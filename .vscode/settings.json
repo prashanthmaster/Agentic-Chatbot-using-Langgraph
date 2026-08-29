@@ -1,0 +1,7 @@
+{
+  // VS Code was auto-typing venv activation into the terminal, which
+  // interrupted long-running commands (it cancelled a docker build).
+  // This project uses `uv run`, which does not need an activated venv.
+  // Revert by setting this to true, or delete this file.
+  "python.terminal.activateEnvironment": false
+}

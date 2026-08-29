@@ -1,0 +1,18 @@
+# Runtime dependencies for the container image.
+# Mirrors [project.dependencies] in pyproject.toml - keep them in sync.
+# (Drift-proof alternative once you are comfortable:
+#     uv export --no-hashes --no-dev --format requirements-txt > requirements.txt)
+
+langgraph==1.2.0
+langchain-openai==1.2.1
+python-dotenv==1.2.2
+pydantic==2.10.4
+streamlit==1.58.0
+langgraph-checkpoint-sqlite==3.1.0
+langchain-tavily==0.2.18
+tavily-python==0.7.26
+langchain-community==0.4.2
+faiss-cpu==1.14.3
+pypdf==6.13.2
+langchain-text-splitters==1.1.2
+requests>=2.32

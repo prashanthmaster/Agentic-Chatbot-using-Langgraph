@@ -1,0 +1,26 @@
+[project]
+name = "chatbot-project"
+version = "0.1.0"
+description = "LangGraph-based chatbot workflow with a Streamlit UI"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "langgraph==1.2.0",
+    "langchain-openai==1.2.1",
+    "python-dotenv==1.2.2",
+    "pydantic==2.10.4",
+    "streamlit==1.58.0",
+    "requests>=2.32",
+    "langgraph-checkpoint-sqlite==3.1.0",
+    "langchain-tavily==0.2.18",
+    "tavily-python==0.7.26",
+    "langchain-community==0.4.2",
+    "faiss-cpu==1.14.3",
+    "pypdf==6.13.2",
+    "langchain-text-splitters==1.1.2",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+]

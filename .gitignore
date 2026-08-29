@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- Project-specific ---
+# SQLite checkpointer (contains full conversation history)
+*.db
+*.db-shm
+*.db-wal
+# FAISS index built from uploaded PDFs
+faiss_db/
+*.bak*
+diagnose_rag.py

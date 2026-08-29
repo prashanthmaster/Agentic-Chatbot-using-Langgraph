@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1470 1104" role="img" aria-label="Architecture diagram of the agentic chatbot: a Streamlit frontend sends user messages to a LangGraph orchestration layer, which calls OpenAI for chat completions and routes tool_calls to one of six tools; the RAG tool reads a FAISS vector store built from OpenAI embeddings, the purchase_stock tool pauses the whole graph via interrupt() and resumes via Command(resume=) once a human approves or rejects in the frontend, and a SQLite checkpointer persists all conversation and pause state.">
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4b5169"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e11d48"/>
+    </marker>
+  </defs>
+
+  <rect x="465" y="20" width="460" height="128" rx="14" fill="#2f5fe0"/>
+  <text x="695" y="71.2" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">Streamlit Frontend</text>
+  <text x="695" y="102.0" text-anchor="middle" font-size="15" fill="#dbe4ff">app_hitl.py</text>
+  <text x="695" y="123.0" text-anchor="middle" font-size="13" fill="#c3d1ff">chat UI · thread sidebar · PDF upload · approve/reject buttons</text>
+
+  <rect x="455" y="278" width="480" height="190" rx="14" fill="#f1ecff" stroke="#6d3fd6" stroke-width="1.5"/>
+
+  <text x="695" y="306" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6d3fd6">LANGGRAPH ORCHESTRATION — agentic_chatbot_hitl_backend.py</text>
+
+  <line x1="603" y1="148" x2="603" y2="278" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <line x1="787" y1="278" x2="787" y2="148" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="583" y="218" text-anchor="end" font-size="13.5" fill="#333">user message</text>
+
+  <text x="807" y="218" text-anchor="start" font-size="13.5" fill="#333">streamed answer</text>
+
+  <rect x="477" y="322" width="200" height="108" rx="12" fill="#6d3fd6"/>
+  <text x="577" y="372.3" text-anchor="middle" font-size="16.5" font-weight="700" fill="#ffffff">chat_node</text>
+  <text x="577" y="395.4" text-anchor="middle" font-size="12.5" fill="#e6dcff">builds SystemMessage + calls LLM</text>
+
+  <rect x="705" y="322" width="208" height="108" rx="12" fill="#8b5cf6"/>
+  <text x="809" y="372.3" text-anchor="middle" font-size="16.5" font-weight="700" fill="#ffffff">tools_condition</text>
+  <text x="809" y="395.4" text-anchor="middle" font-size="12.5" fill="#ece4ff">routes: tools vs. END</text>
+
+  <line x1="677" y1="376" x2="705" y2="376" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <rect x="40" y="322" width="250" height="108" rx="12" fill="#16a34a"/>
+  <text x="165" y="363.6" text-anchor="middle" font-size="16.5" font-weight="700" fill="#ffffff">SQLite Checkpointer</text>
+  <text x="165" y="386.7" text-anchor="middle" font-size="12.5" fill="#d3f4de">chatbot.db — persists every</text>
+  <text x="165" y="404.2" text-anchor="middle" font-size="12.5" fill="#d3f4de">thread's state, incl. paused runs</text>
+
+  <line x1="290" y1="352" x2="471" y2="352" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <line x1="471" y1="400" x2="290" y2="400" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="380" y="342" text-anchor="middle" font-size="12.5" fill="#333">checkpoint write</text>
+
+  <text x="380" y="418" text-anchor="middle" font-size="12.5" fill="#333">load state</text>
+
+  <rect x="1070" y="278" width="280" height="190" rx="14" fill="#10a37f"/>
+  <text x="1210" y="360.5" text-anchor="middle" font-size="18.5" font-weight="700" fill="#ffffff">OpenAI API</text>
+  <text x="1210" y="386.4" text-anchor="middle" font-size="13" fill="#d3f7ec">gpt-5-nano — chat completions</text>
+  <text x="1210" y="404.6" text-anchor="middle" font-size="13" fill="#d3f7ec">text-embedding-3-small — vectors</text>
+
+  <line x1="1070" y1="334" x2="919" y2="334" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="994" y="322" text-anchor="middle" font-size="12.5" fill="#333">llm_with_tools.invoke()</text>
+
+  <line x1="919" y1="398" x2="1070" y2="398" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="994" y="422" text-anchor="middle" font-size="12.5" fill="#333">AIMessage (streamed)</text>
+
+  <line x1="541" y1="468" x2="541" y2="560" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <line x1="787" y1="560" x2="787" y2="468" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="525" y="519" text-anchor="end" font-size="13.5" fill="#333">tool_calls present</text>
+
+  <text x="803" y="519" text-anchor="start" font-size="13.5" fill="#333">ToolMessage, loop back</text>
+
+  <text x="695" y="544" text-anchor="middle" font-size="13.5" font-weight="700" fill="#333">TOOLS — ToolNode(tools)</text>
+
+  <rect x="40" y="560" width="205" height="140" rx="12" fill="#06b6d4"/>
+  <text x="142" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">search_tool</text>
+  <text x="142" y="639.7" text-anchor="middle" font-size="12.5" fill="#dff8fd">general web search</text>
+  <text x="142" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#d1f2f8">via Tavily API</text>
+
+  <rect x="261" y="560" width="205" height="140" rx="12" fill="#64748b"/>
+  <text x="364" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">calculator</text>
+  <text x="364" y="639.7" text-anchor="middle" font-size="12.5" fill="#e2e6ec">sandboxed eval()</text>
+  <text x="364" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#d3d8e0">math expressions</text>
+
+  <rect x="482" y="560" width="205" height="140" rx="12" fill="#f59e0b"/>
+  <text x="584" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">get_stock_price</text>
+  <text x="584" y="639.7" text-anchor="middle" font-size="12.5" fill="#fdecc8">GLOBAL_QUOTE lookup</text>
+  <text x="584" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#fbe4b0">via Alpha Vantage API</text>
+
+  <rect x="703" y="560" width="205" height="140" rx="12" fill="#0ea5e9"/>
+  <text x="806" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">get_current_weather</text>
+  <text x="806" y="639.7" text-anchor="middle" font-size="12.5" fill="#d6f0fd">geocode + conditions</text>
+  <text x="806" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#bfe6fb">via OpenWeather API</text>
+
+  <rect x="924" y="560" width="205" height="140" rx="12" fill="#d946ef"/>
+  <text x="1026" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">rag_tool</text>
+  <text x="1026" y="639.7" text-anchor="middle" font-size="12.5" fill="#fbdcfb">retrieves from uploaded PDF</text>
+  <text x="1026" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#f6c2f6">similarity search, k=4</text>
+
+  <rect x="1145" y="560" width="205" height="140" rx="12" fill="#e11d48"/>
+  <text x="1248" y="618.0" text-anchor="middle" font-size="15.5" font-weight="700" fill="#ffffff">purchase_stock</text>
+  <text x="1248" y="639.7" text-anchor="middle" font-size="12.5" fill="#fbd3dc">simulated buy order</text>
+  <text x="1248" y="657.2" text-anchor="middle" font-size="11.5" font-style="italic" fill="#f7b8c7">pauses via interrupt()</text>
+
+  <line x1="1026" y1="700" x2="1026" y2="780" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <rect x="904" y="780" width="245" height="104" rx="12" fill="#7c3aed"/>
+  <text x="1026" y="819.4" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">FAISS Vector Store</text>
+  <text x="1026" y="841.8" text-anchor="middle" font-size="12.5" fill="#e6dbfd">faiss_db/ — chunks + embeddings</text>
+  <text x="1026" y="859.3" text-anchor="middle" font-size="12.5" fill="#e6dbfd">from ingest_rag_document()</text>
+
+  <path d="M 1149 798 C 1269 798, 1385 758, 1385 633 S 1385 508, 1244 468" fill="none" stroke="#4b5169" stroke-width="2.4" marker-end="url(#arrow)"/>
+
+  <text x="1219" y="734" text-anchor="middle" font-size="12.5" fill="#333">embed chunks / query</text>
+
+  <path d="M 1352 605 C 1432 565, 1432 205, 1320 175 L 943 175" fill="none" stroke="#e11d48" stroke-width="3" stroke-dasharray="8,7" marker-end="url(#arrowRed)" marker-start="url(#arrowRed)"/>
+
+  <rect x="1126" y="207" width="224" height="60" rx="9" fill="#ffffff" stroke="#e11d48" stroke-width="1.4"/>
+
+  <text x="1238" y="232" text-anchor="middle" font-size="13" fill="#e11d48" font-weight="700">interrupt() pauses ⇄</text>
+
+  <text x="1238" y="252" text-anchor="middle" font-size="13" fill="#e11d48" font-weight="700">Command(resume=) continues</text>
+
+  <g transform="translate(40,946)">
+  <text x="0" y="0" font-size="14.5" font-weight="700" fill="#333">LEGEND</text>
+  <rect x="0" y="22" width="20" height="20" rx="3" fill="#2f5fe0"/><text x="30" y="37" font-size="14" fill="#333">Frontend (Streamlit)</text>
+  <rect x="0" y="56" width="20" height="20" rx="3" fill="#6d3fd6"/><text x="30" y="71" font-size="14" fill="#333">Graph orchestration (LangGraph)</text>
+  <rect x="0" y="90" width="20" height="20" rx="3" fill="#10a37f"/><text x="30" y="105" font-size="14" fill="#333">LLM / embeddings (OpenAI)</text>
+  <rect x="0" y="124" width="20" height="20" rx="3" fill="#16a34a"/><text x="30" y="139" font-size="14" fill="#333">Persistence (SQLite)</text>
+  <rect x="370" y="22" width="20" height="20" rx="3" fill="#7c3aed"/><text x="400" y="37" font-size="14" fill="#333">Vector store (FAISS)</text>
+  <rect x="370" y="56" width="20" height="20" rx="3" fill="#e11d48"/><text x="400" y="71" font-size="14" fill="#333">Human-in-the-loop tool</text>
+  <rect x="780" y="22" width="20" height="20" rx="3" fill="#06b6d4"/><text x="810" y="37" font-size="14" fill="#333">Other tools (search, calc, price, weather)</text>
+  <line x1="370" y1="100" x2="392" y2="100" stroke="#e11d48" stroke-width="2.4" stroke-dasharray="7,6"/><text x="402" y="105" font-size="14" fill="#333">interrupt / resume path</text>
+</g>
+
+</svg>
